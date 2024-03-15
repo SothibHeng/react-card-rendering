@@ -48,12 +48,13 @@ function App() {
     setDataForm(product)
   }
 
-  const createProduct = async () => {
-    fetch("https://fakestoreapi.com/products",{
+  const createProduct = () => {
+    fetch("https://fakestoreapi.com/products",
+    {
       method: "POST",
       body:JSON.stringify(dataForm),
       headers: {
-        "Content-type": "application/json; ",
+        "Content-type": "application/json;",
       },
     }).then((res) => res.json()).then((data) => {
       console.log("Successfully!")
@@ -71,7 +72,7 @@ function App() {
      <NavBar/>
      {/* button */}
      <div className='p-10 flex justify-center'>
-     <Button onClick={() => createProduct()}>Create new Product</Button>
+     <Button onClick={() => setOpenModal(true)}>Create new Product</Button>
 
      </div>
      {/* card */}
@@ -94,11 +95,11 @@ function App() {
         <Modal.Header>Create product</Modal.Header>
         <Modal.Body>
           <div className="space-y-6">
-            <CreateNewProductForm getDataform = {getDataForm}/>
+            <CreateNewProductForm getDataForm = {getDataForm}/>
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={() => setOpenModal(false)}>Create</Button>
+          <Button onClick={() => createProduct()}>Create</Button>
           <Button color="gray" onClick={() => setOpenModal(false)}>
             Cancel
           </Button>
